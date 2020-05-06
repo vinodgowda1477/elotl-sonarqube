@@ -1,0 +1,13 @@
+---
+- name: Install prerequisites
+  pip:
+    name: '{{item}}'
+    executable: pip3
+    state: present
+  with_items:
+    - boto3
+    - awscli==1.17.11
+    - botocore==1.14.11
+    - docker-py==1.10.6
+    - openshift==0.10.2
+    - PyYAML==5.3

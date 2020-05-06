@@ -1,0 +1,20 @@
+- name: Buid latest image image
+  docker_image:
+    build:
+      path: ~/elotl-code/
+      nocache: yes
+      args:
+        MOCK_CLUSTERS: '4'
+        NAMESPACE_IS_HIDDEN: 'true'
+      pull: no
+    name: elotl-dashboard-app
+    repository: '{{ ecr_image_base_uri }}'
+    tag: '{{ image_tag }}'
+    force_source: yes
+    push: yes
+    source: build
+  register: image_update
+  until: image_update is succeeded
+  retries: 3
+  delay: 3
+  ignore_errors: yes

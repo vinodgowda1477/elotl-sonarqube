@@ -1,0 +1,40 @@
+.selectbox {
+   label{
+    letter-spacing: 0;
+    color: #333333;
+    opacity: 1;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+   }
+    .select-box{
+        background: #F5F6F7 ;
+        border-radius: 5px;
+        opacity: 1;
+        width: 404px;
+        height: 45px;
+        margin-top: 10px;
+        .css-1fhf3k1-control{
+            height: inherit;
+        }
+        .css-yk16xz-control{
+            height: inherit;
+            &:focus{
+                outline: none !important;
+            }
+        }
+    }
+}
+.Select-value{
+    border: 1px solid darkgray !important;
+    background: #111 !important;
+  }
+  
+  .Select-value-icon {
+    display: none !important;
+  }
+  
+  .Select-value-label {
+    background-color: white;
+    color: #111 !important;
+  }

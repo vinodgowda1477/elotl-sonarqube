@@ -1,0 +1,3 @@
+ecr_image_base_uri: <replace ecr repository base url where image needs to be pushed>
+image_tag: <replace with image tag value>
+region: <aws region where ecr and eks cluster exists>

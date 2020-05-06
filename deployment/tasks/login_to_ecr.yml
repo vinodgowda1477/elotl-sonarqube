@@ -1,0 +1,4 @@
+- name: docker login (must `--no-include-email`)
+  shell: '$(aws ecr get-login --region {{ region }} --no-include-email)'
+  args:
+    executable: /bin/bash

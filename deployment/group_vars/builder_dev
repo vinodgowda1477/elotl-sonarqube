@@ -1,0 +1,5 @@
+ecr_image_base_uri: <replace ecr repository base url where image needs to be pushed>
+image_tag: <replace with image tag value>
+git_repo: <replace with git repo url>
+branch: <github branch name from which latest code needs to be pulled to build docker image>
+region: <aws region where ecr and eks cluster exists>

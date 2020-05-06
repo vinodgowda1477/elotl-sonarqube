@@ -1,0 +1,50 @@
+.sm-card{
+    width: 177px;
+    height: 177px;
+    background: #1BC172 ;
+    box-shadow: 0px 30px 60px #0000000D;
+    border-radius: 10px;
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    &:hover{
+         background-color : #34D28C;
+         -webkit-transform: translateY(-2px);
+         transform: translateY(-2px);
+         box-shadow: 0px 12px 30px rgba(52, 210, 140, 0.3);
+    }
+    .card-content{
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h2{
+            color: #ffffff;
+            margin: 0px;
+            padding: 0px;
+            padding-bottom: 14px;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 29px;
+        }
+        p{
+            letter-spacing: 0;
+            color: #FFFFFF;
+            opacity: 1;
+            font-size: 18px;
+            line-height: 22px;
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+}
+.deployment-card{
+    cursor: default;
+    &:hover{
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        background: #1BC172 ;
+        box-shadow: 0px 30px 60px #0000000D;
+   }
+}

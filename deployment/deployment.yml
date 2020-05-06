@@ -1,0 +1,27 @@
+---
+- name: build image from updated code and push to aws ecr
+  hosts: "{{ deployer_host }}"
+  gather_facts: no
+  become: yes
+  pre_tasks:
+  - name: Install python3 for Ansible
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python3 && apt install -y python3-pip)
+    changed_when: False
+  - setup: # aka gather_facts
+  tasks:
+    - include: tasks/install_prerequisites.yml
+    - include: tasks/pull_latest_code.yml
+    - include: tasks/login_to_ecr.yml
+    - include: tasks/build_latest_image.yml
+
+- name: pull latest image and deploy on cluster
+  hosts: "{{ cluster_host }}"
+  gather_facts: no
+  become: yes
+  tasks:
+    - include: tasks/login_to_ecr.yml
+    - include: tasks/create_temp_deployment_file.yml
+    - name: deploy app on cluster
+      k8s:
+        state: present
+        src: "{{ deployment_temp.path }}"

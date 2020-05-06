@@ -1,0 +1,40 @@
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-stats-list-role
+  namespace: default
+rules:
+- apiGroups: ["*"]
+  resources: ["componentstatuses","pods","nodes","nodes/stats","namespaces","deployments", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods","nodes"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["kiyot.elotl.co"]
+  resources: ["cells"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments/deployments","deployments","replicasets"]
+  verbs: ["get", "list", "watch"]
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-stats-list-role-dashboard
+  namespace: dashboard
+rules:
+  - apiGroups: ["*"]
+    resources: ["componentstatuses","pods","nodes","nodes/stats","namespaces","deployments", "configmaps","secrets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["pods","nodes"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["kiyot.elotl.co"]
+    resources: ["cells"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments/deployments","deployments","replicasets"]
+    verbs: ["get", "list", "watch"]
+

@@ -1,0 +1,42 @@
+.home-page{
+    background-image: url("../../images/cover_img.png");
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    width: 960px;
+    .content{
+        position: absolute;
+        bottom: 46px;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        margin-top:70px;
+        img{
+            width: 195px;
+            height: 44px;
+        }
+        p{
+            margin: 0px;
+            padding: 0px;
+            letter-spacing: 0;
+            color: #1BC172;
+            opacity: 1;
+            font-size: 30px;
+            line-height: 38px;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+    }
+    .btn-sec{
+       margin-top: 48px;
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
+@media only screen and (max-height :868px) {
+    .home-page{
+        height: 880px;
+    }
+}

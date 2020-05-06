@@ -1,0 +1,6 @@
+kubernetes==10.0.1
+Flask==1.1.1
+flask-cors
+requests
+urllib3
+gunicorn

@@ -1,0 +1,21 @@
+.indicatr-btn{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    .circle{
+        width: 12px;
+        height: 12px;
+        background: #F5F6F7 ;
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 4px;
+
+    }
+    span{
+        letter-spacing: 0;
+        color: #888888;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}

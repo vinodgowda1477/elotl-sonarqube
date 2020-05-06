@@ -1,0 +1,52 @@
+.progress-bar{
+    width: 100%;
+    position: relative;
+    .semicircle-container{
+        svg{
+            height: 85px !important;
+        }
+    }
+    .bar-1{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 220px;
+        height: 85px;
+        text-align: center;
+        margin: 0 auto;
+        justify-content: center;
+        
+        .progress-wraper{
+            position: absolute;
+            left: 0;
+            bottom: 0px;
+            right: 0;
+            .pg-title{
+                letter-spacing: 0;
+                color: #333333;
+                opacity: 1;
+                font-size: 24px;
+                line-height: 34px;
+                font-weight: 500;
+            }
+            .pg-label{
+                letter-spacing: 0;
+                color: #888888;
+                opacity: 1;
+                font-size: 14px;
+                line-height: 18px;
+                margin-bottom: 12px;
+            }
+            .bdr-btm{
+                height: 1px;
+                background: #000;
+                margin: 0 auto;
+            }
+        }
+    }
+    .bar-2{
+        margin-top: 30px;
+    }
+    
+}

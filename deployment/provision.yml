@@ -1,0 +1,26 @@
+---
+- name: Provision cluster to deploy
+  hosts: "{{ cluster_host }}"
+  gather_facts: no
+  become: yes
+  pre_tasks:
+  - name: Install python3 for Ansible
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python3 && apt install -y python3-pip)
+    changed_when: False
+  - setup: # aka gather_facts
+  tasks:
+    - include: tasks/install_prerequisites.yml
+    - name: Create a k8s namespace
+      k8s:
+        name: dashboard
+        api_version: v1
+        kind: Namespace
+        state: present
+    - name: Configure role-based access control (RBAC) roles to access clusters
+      k8s:
+        state: present
+        src: kubernetes-manifests/dashboard-role.yml
+    - name: Bind the rbac role
+      k8s:
+        state: present
+        src: kubernetes-manifests/dashboard-roleBinding.yml

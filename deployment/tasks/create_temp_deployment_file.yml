@@ -1,0 +1,9 @@
+- name: create temporary file to replace pod deployment file
+  tempfile:
+    state:  file
+    suffix: elotl-pod-deployment
+  register: deployment_temp
+- name: replace plcaeholder into temporary file
+  template:
+    src:  kubernetes-manifests/elotl-pod-deployment.yml
+    dest: "{{ deployment_temp.path }}"

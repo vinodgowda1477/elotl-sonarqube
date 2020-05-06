@@ -1,0 +1,157 @@
+.sidebar{
+    width: 70px;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    .logo{
+        padding: 0px 12px;
+        margin: 0px;
+        text-align: center;
+        margin: 33px 0px 27px 0px;
+        width: 43px;
+        height: 10px;
+    }
+    ul{
+        padding: 0px !important;
+        margin: 0px;
+        text-align: center;
+        li{
+            text-align: center;
+            height: 56px;
+            width: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            //animation
+
+            .container {
+                .sidebr-card {
+                    position: relative;
+                    border-radius: 0px;
+                    .icon {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        transition: 0.7s;
+                        z-index: 1;
+                        .fa {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            font-size: 20px;
+                            transition: 0.7s;
+                            color: #fff;
+                        }
+                    }
+                   
+                    .face {
+                        width: 70px;
+                        transition: 0.5s;
+                        background: transparent;
+                    }
+                    .face.face1 {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1;
+                        transform: translateY(8px);
+                        height: 56px;
+                        .content {
+                            opacity: 1;
+                            transition: 0.5s;
+                            i {
+                                max-width: 100px;
+                            }
+                        }
+                    }
+                    &:hover {
+                        .face.face1 {
+                            transform: translateY(0px);
+                            -webkit-transform: scale(0.8);
+                            -ms-transform: scale(0.8);
+                            transform: scale(0.8);
+                            z-index: 0;
+                            .content {
+                                opacity: 1;
+                                svg {
+                                    opacity: 1;
+                                    fill: #1BC172;
+                                    stroke: #1BC172;
+                                }
+                            }
+                        }
+                        .face.face2 {
+                            transform: translateY(-14px);
+                            .content {
+                                p {
+                                    color:  #1BC172;
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                    }
+                    .face.face2 {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0px;
+                        box-sizing: border-box;
+                        transform: translateY(-28px);
+                        background-color: transparent;
+                        .content {
+                            p {
+                                margin: 0;
+                                padding: 0;
+                                text-align: center;
+                                letter-spacing: 0;
+                                color: #171C31;
+                                opacity: 1;
+                                font-size: 10px;
+                                line-height: 13px;
+                                visibility: hidden;
+                               
+                            }
+                        }
+                    }
+                }
+              
+            }
+            svg {
+                background: transparent;
+            }
+            svg {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 20px;
+                transition: 0.7s;
+                color: #fff;
+                width: 20px;
+                height: 20px;
+                &:hover{
+                    color:  #1BC172;
+                    fill: #1BC172;
+                }
+            }
+            
+            // end of the animation
+            &:hover{
+                background-color: #F0F0F0;
+            }
+            // &.active-tab{
+            //     background-color: #F0F0F0;
+            // }
+        }
+    }
+}
+

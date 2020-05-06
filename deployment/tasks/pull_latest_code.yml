@@ -1,0 +1,10 @@
+---
+- name: pull latest Code
+  git:
+    repo: "{{ git_repo }}"
+    dest: '~/elotl-code'
+    version: "{{ branch }}"
+    accept_hostkey: yes
+    force: yes
+    depth: 1
+
