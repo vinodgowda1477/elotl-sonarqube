@@ -1,21 +1,21 @@
 import os
 import json
 import decimal
-import requests
-import base64
-import random
-import math
-import logging
-from urllib3.exceptions import InsecureRequestWarning
-from kubernetes import client, config
+#import requests
+#import base64
+#import random
+#import math
+#import logging
+#from urllib3.exceptions import InsecureRequestWarning
+#from kubernetes import client, config
 
 # getting the saved environment variables
 mock_cluster_count = int(os.environ['MOCK_CLUSTERS'])
 namespace_is_hidden = os.environ['NAMESPACE_IS_HIDDEN']
 
 # setting up logger
-logging.basicConfig(filename='elotl.log', filemode='w', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+#logging.basicConfig(filename='elotl.log', filemode='w', level=logging.DEBUG)
+#logger = logging.getLogger(__name__)
 
 # loading the configuration file
 try:
@@ -37,12 +37,12 @@ def get_node_data(cluster_id):
     """
     try:
         # fetching the token from secret of the namespace 'dashboard'
-        _TOKEN = [base64.b64decode(secret_item.data['token']).decode('UTF-8') for secret_item in client.CoreV1Api(
+ #       _TOKEN = [base64.b64decode(secret_item.data['token']).decode('UTF-8') for secret_item in client.CoreV1Api(
         ).list_namespaced_secret('dashboard').items if base64.b64decode(secret_item.data['namespace']).decode(
             'UTF-8') == 'dashboard'][0]
 
         # generating User Agent
-        version_detail = client.VersionApi().get_code()
+  #      version_detail = client.VersionApi().get_code()
         _USER_AGENT = 'kubectl/' + version_detail.git_version + ' (' + version_detail.platform + ') ' + 'kubernetes/' + \
                       version_detail.git_commit[0:7]
         _HEADERS = {'User-Agent': _USER_AGENT, 'Accept': 'application/json',
@@ -50,13 +50,13 @@ def get_node_data(cluster_id):
 
         # generating url for node listing
         _URL = client.Configuration().host + '/api/v1/nodes'
-        requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+   #     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
         return requests.get(url=_URL, headers=_HEADERS, verify=False).json()['items']
     except Exception as e:
         logger.error(e)
 
 
-def get_namespace_data(cluster_id, namespace_id=None):
+#def get_namespace_data(cluster_id, namespace_id=None):
     """
     Fetch namespace listing and detail
     :param namespace_id:
@@ -81,7 +81,7 @@ def get_namespace_data(cluster_id, namespace_id=None):
         return namespace_list
 
 
-def get_deployment_data(cluster_id, namespace_id=None, deployment_id=None):
+#def get_deployment_data(cluster_id, namespace_id=None, deployment_id=None):
     """
     Fetch deployment listing and detail
     :param deployment_id:
