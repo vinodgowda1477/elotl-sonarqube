@@ -9,23 +9,23 @@ from utilities import get_cluster_info, \
     get_compute_cell_data, get_cluster_detail
 
 # getting the saved environment variables
-#mock_cluster_count = os.environ['MOCK_CLUSTERS']
-#namespace_is_hidden = os.environ['NAMESPACE_IS_HIDDEN']
+mock_cluster_count = os.environ['MOCK_CLUSTERS']
+namespace_is_hidden = os.environ['NAMESPACE_IS_HIDDEN']
 
 # setting up logger
-#logging.basicConfig(filename='elotl.log', filemode='w', level=logging.DEBUG)
-#logger = logging.getLogger(__name__)
+logging.basicConfig(filename='elotl.log', filemode='w', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # setting up flask app and static folder for react build
-#app = Flask(__name__, static_folder='../elotl-dashboard-UI/build')
+app = Flask(__name__, static_folder='../elotl-dashboard-UI/build')
 
 # allowing Cross Origin Resource Sharing for flask
 CORS(app)
 
 # loading the configuration file
 try:
-#    config.load_kube_config()
-#    logger.info("kube config loaded")
+    config.load_kube_config()
+    logger.info("kube config loaded")
 except TypeError:
     try:
         config.load_incluster_config()
@@ -37,7 +37,7 @@ except TypeError:
 # Serve React App
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-#def serve(path):
+def serve(path):
     """
     Function to serve the react app.
     :param path:
@@ -50,7 +50,7 @@ except TypeError:
 
 
 @app.route('/clusters', methods=["GET"])
-#def get_clusters():
+def get_clusters():
     """
     Function to fetch Kubernetes Cluster details
     gets list of clusters and their info
