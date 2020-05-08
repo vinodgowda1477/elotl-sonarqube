@@ -11,6 +11,13 @@ pipeline {
         git 'https://github.com/vinodgowda1477/elotl-sonarqube.git'
       }
     }
+    
+   stage('SonarQube analysis') {
+  def scannerHome = tool 'SonarQube Scanner 2.8';
+  withSonarQubeEnv('elotl') {
+    sh "/opt/sonarscanner/sonar-scanner-3.2.0.1227-linux"
+  }
+}
     stage('Building image') {
       steps{
         script {
