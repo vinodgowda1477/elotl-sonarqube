@@ -36,6 +36,11 @@ pipeline {
      }
   }
 }
+    stage('oss to audit python packages') {
+      steps{
+        sh "ossaudit -i"
+      }
+    }
     stage('Building image') {
       steps{
         script {
