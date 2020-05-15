@@ -236,4 +236,4 @@ def get_node(cluster_id, node_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True , host=0.0.0.0, use_reloader=True, port=4000, threaded=True)
+    app.run(debug=True , host='0.0.0.0', use_reloader=True, port=4000, threaded=True)
