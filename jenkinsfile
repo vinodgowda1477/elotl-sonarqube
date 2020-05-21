@@ -38,8 +38,10 @@ pipeline {
 }
     stage('oss to audit python packages') {
       steps{
-        sh "ossaudit -i"
-      }
+        retry(3) {
+                  sh './ossaudit.sh | tee ./ossaudit.log'
+           }
+       }
     }
     stage('Building image') {
       steps{
@@ -65,5 +67,14 @@ pipeline {
       }
     }
   }
+  post {  
+         success {  
+             echo 'Application audited successfully'  
+         }  
+         failure {  
+             mail bcc: '', body: "<b>build failed.please check jenkins build results</b><br> Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: ${env.JOB_NAME}", to: "vinodgowda417@gmail.com";
+         }  
+     }  
+
 }
 
