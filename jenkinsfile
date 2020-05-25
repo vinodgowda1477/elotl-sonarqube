@@ -39,7 +39,8 @@ pipeline {
     stage('oss to audit python packages') {
       steps{
         retry(3) {
-                  sh './ossaudit.sh | tee ./ossaudit.log'
+                  sh './ossaudit.sh | tee ./ossaudit.html'
+		emailext attachmentsPattern: '**/ossaudit.html', body: 'ossaudit report', subject: 'ossaudit report', to: 'vinodgowda417@gmail.com'
            }
        }
     }
