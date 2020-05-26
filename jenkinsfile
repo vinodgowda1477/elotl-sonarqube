@@ -67,7 +67,6 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-  }
       stage('audit infrasrtucture with scoutsuite') {
       steps{
         retry(3) {               
@@ -75,6 +74,7 @@ pipeline {
            }
        }
     }
+  }
   post {  
          success {  
              mail bcc: '', body: "<b>Pipeline completed successfully</b><br> Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Pipeline Successfull: ${env.JOB_NAME}", to: "vinodgowda417@gmail.com";
