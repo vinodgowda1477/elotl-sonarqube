@@ -38,13 +38,14 @@ pipeline {
 }
     stage('oss to audit python packages') {
       steps{
-        retry(3) {
-		sh 'pwd'
-	   	sh 'ls'                  
-		sh './ossaudit.sh | tee ./ossaudit.log'
+        retry(3) {            
+		sh './ossaudit.sh | tee ./ossaudit.html'
+		emailext attachmentsPattern: '**/ossaudit.html', body: 'Please find the ossaudit report attached with this mail', subject: 'OSS AUDIT REPORT', to: 'vinodgowda417@gmil.com'
+
            }
        }
     }
+
     stage('Building image') {
       steps{
         script {
