@@ -39,8 +39,8 @@ pipeline {
     stage('oss to audit python packages') {
       steps{
         retry(3) {            
-		sh './ossaudit.sh | tee ./ossaudit.html'
-		emailext attachmentsPattern: '**/ossaudit.html', body: 'Please find the ossaudit report attached with this mail', subject: 'OSS AUDIT REPORT', to: 'vinodgowda417@gmil.com'
+		sh './ossaudit.sh | tee ./ossaudit.log'
+		emailext attachmentsPattern: 'ossaudit.log', body: '<b>please find the ossaudit report attached with this mail</b><br> Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: ${env.JOB_NAME}', subject: 'OSS AUDIT REPORT:Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}', to: 'vinodgowda417@gmil.com'
 
            }
        }
@@ -67,6 +67,12 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+  }
+      stage('Infrastucture auditing with scoutsuite') {
+      steps{
+        sh "./scoutsuite.sh"
       }
     }
   }
