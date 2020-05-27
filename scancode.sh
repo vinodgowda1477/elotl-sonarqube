@@ -3,4 +3,4 @@ set -e
 virtualenv -p python3 scancode
 source scancode/bin/activate
 pip3 install scancode-toolkit
-scancode -clpieu --json-pp compliance-report.html elotl-dashboard-UI
+scancode -clpieu --html compliance-report.html elotl-dashboard-UI
