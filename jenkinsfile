@@ -40,7 +40,15 @@ pipeline {
       steps{
         retry(3) {               
 		sh './ossaudit.sh | tee ./ossaudit.log'
-		emailext attachmentsPattern: 'ossaudit.log', body: 'Find attachments', subject: 'test', to: 'vinodgowda417@gmail.com';
+		emailext attachmentsPattern: 'ossaudit.log', body: 'Please find the oss audit report attached', subject: 'OSS AUDIT REPORT-> CI: ${env.JOB_NAME} BUILD: ${env.BUILD_NUMBER}', to: 'vinodgowda417@gmail.com';
+           }
+       }
+    }
+      stage('License compliance audit') {
+      steps{
+        retry(3) {               
+		sh './scancode.sh'
+		emailext attachmentsPattern: 'compliance-report.html', body: 'Please find the scancode audit report attached', subject: 'SCANCODE AUDIT REPORT-> CI: ${env.JOB_NAME} BUILD: ${env.BUILD_NUMBER}', to: 'vinodgowda417@gmail.com';
            }
        }
     }
@@ -69,8 +77,12 @@ pipeline {
     }
       stage('audit infrasrtucture with scoutsuite') {
       steps{
-        retry(3) {               
-		sh './scoutsuite.sh'
+        retry(3) {            
+		withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'AWS_ACCESS_KEY_ID'), string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'AWS_SECRET_ACCESS_KEY')]) {
+		sh './scoutsuite.sh $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY'
+		emailext attachmentsPattern: 'scoutsuite-report/scout-suite.html', body: 'Please find the scoutsuite report attached', subject: 'SCOUTSUITE AUDIT REPORT-> CI: ${env.JOB_NAME} BUILD: ${env.BUILD_NUMBER}', to: 'vinodgowda417@gmail.com';
+  
+		}   
            }
        }
     }
