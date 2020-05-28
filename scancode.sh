@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
-virtualenv -p python3 scancode
+virtualenv --no-site-packages -p python3 scancode
 source scancode/bin/activate
 pip3 install scancode-toolkit
-pip3 install -r api/requirements.txt
-scancode -clp --html compliance-report.html --include "__init__.*" -n 6 --timeout 100 scancode/lib/python3.6/site-packages --only-findings
+mkdir scancode/app-packages
+pip3 install -r api/requirements.txt --target=scancode/app-packages/
+scancode -cl --html compliance-report.html -n 10 --timeout 300 scancode/app-packages/ --only-findings --ignore "*.pyc"  --include "*LICENSE*" --include "*version*" --include "*copyright*" --include "*__init__*" 
